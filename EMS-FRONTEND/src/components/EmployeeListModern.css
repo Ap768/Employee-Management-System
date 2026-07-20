@@ -1,0 +1,178 @@
+:root {
+  --primary: #445232;
+  --primary-variant: #d44a6c;
+  --secondary: #1eff00;
+  --accent: #92ff77;
+  --text: #f0f4ff;
+  --text-secondary: #e8d1b3;
+}
+
+.employee-container {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(15,25,55,0.95), rgba(65, 20, 43, 0.92));
+  padding: 2rem;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgb(109, 126, 255);
+  border: 1px solid rgba(109,125,255,0.35);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.employee-container::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,217,255,0.15), transparent 60%);
+  pointer-events: none;
+}
+
+.employee-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,217,255,0.05), rgba(168,119,255,0.05));
+  pointer-events: none;
+}
+
+.employee-header .title {
+  margin-bottom: 0.5rem;
+  font-size: 1.9rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #d0e1ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #ffffff;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(109,125,255,0.25);
+  font-size: 1rem;
+  background: rgba(8,14,32,0.98);
+  color: var(--text);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+  transition: all 200ms ease;
+}
+
+.search-input::placeholder {
+  color: rgba(176,190,232,0.6);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(0,217,255,0.6);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(0,217,255,0.25);
+  transform: translateY(-2px);
+}
+
+.refresh-btn {
+  padding: 0.95rem 1.4rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-variant));
+  border: none;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(109,125,255,0.35);
+  transition: all 240ms ease;
+  font-weight: 700;
+}
+
+.refresh-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 45px rgba(109,125,255,0.45);
+}
+
+.employee-table {
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 14px;
+}
+
+.employee-table th,
+.employee-table td {
+  vertical-align: middle;
+  padding: 1rem 1rem;
+  color: var(--text);
+}
+
+.employee-table tbody td {
+  color: var(--text);
+}
+
+.employee-table thead th {
+  background: transparent;
+  color: var(--secondary);
+  border-bottom: 2px solid rgba(0,217,255,0.25);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.employee-table tbody tr {
+  background: linear-gradient(135deg, rgba(20,35,75,0.9), rgba(15,28,65,0.88));
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(109,125,255,0.2);
+}
+
+.employee-table tbody tr:hover {
+  transform: translateY(-6px);
+  background: linear-gradient(135deg, rgba(100, 30, 100, 0.95), rgba(66, 20, 80, 0.93));
+  box-shadow: 0 20px 50px rgba(255, 0, 170, 0.25), inset 0 1px 0 rgba(255,255,255,0.12);
+  border-color: rgba(255, 0, 128, 0.5);
+}
+
+.delete-btn {
+  min-width: 92px;
+}
+
+@media (max-width: 768px) {
+  .employee-container {
+    padding: 1.5rem;
+  }
+
+  .employee-table th,
+  .employee-table td {
+    padding: 0.85rem 0.75rem;
+  }
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  color: rgb(255, 255, 255);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(0,217,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+.name-cell .fw-semibold {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.name-subtitle {
+  color: rgba(176,190,232,0.7);
+  font-size: 0.85rem;
+}
+
+.email-cell {
+  color: var(--secondary);
+  font-weight: 500;
+}

@@ -1,0 +1,221 @@
+:root {
+  --text: #4e5165;
+  --text-h: #161a2e;
+  --bg: #eef1ff;
+  --border: rgba(130, 139, 255, 0.25);
+  --code-bg: #f7f9ff;
+  --accent: #5d5dff;
+  --accent-bg: rgba(93, 93, 255, 0.12);
+  --accent-border: rgba(93, 93, 255, 0.3);
+  --shadow: rgba(60, 66, 182, 0.08) 0 28px 60px -20px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/1.6 var(--sans);
+  letter-spacing: 0.01em;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #c7d1ea;
+    --text-h: #f4f7ff;
+    --bg: #10131f;
+    --border: rgba(123, 126, 255, 0.18);
+    --code-bg: #171b2f;
+    --accent: #7b85ff;
+    --accent-bg: rgba(123, 133, 255, 0.14);
+    --shadow: rgba(0, 0, 0, 0.5) 0 28px 60px -20px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: radial-gradient(circle at top, rgba(93, 93, 255, 0.15), transparent 28%),
+    linear-gradient(180deg, #f7f8ff 0%, #eef1ff 40%, #f9fafc 100%);
+  color: var(--text);
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem 1rem 3rem;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 1.6rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.app-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.05;
+  color: var(--text-h);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.dashboard-grid--full {
+  grid-template-columns: 1fr;
+}
+
+.center-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 180px);
+}
+
+.login-card,
+.panel.card {
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow);
+}
+
+.login-panel,
+.add-employee-panel,
+.employee-container {
+  width: 100%;
+}
+
+.section-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.65rem;
+  color: var(--text-h);
+}
+
+.section-copy {
+  margin: 0;
+  color: #6d738d;
+}
+
+.employee-form input:focus,
+.login-panel input:focus,
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(93, 93, 255, 0.15);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #4f55f3;
+  border-color: #4f55f3;
+}
+
+.btn-outline-secondary {
+  color: #43496b;
+  border-color: #d8dae9;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  background: rgba(93, 93, 255, 0.08);
+  border-color: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* subtle interactions */
+.card,
+.panel.card,
+.login-card,
+.employee-container {
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.card:hover,
+.panel.card:hover,
+.employee-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(60,66,182,0.08);
+}
+
+.btn {
+  transition: background-color 140ms ease, transform 120ms ease, opacity 120ms ease;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.997);
+}
+
+.btn-add {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-add:hover,
+.btn-add:focus {
+  background-color: #4f55f3;
+  border-color: #4f55f3;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-delete:hover,
+.btn-edit:hover {
+  opacity: 0.92;
+}
