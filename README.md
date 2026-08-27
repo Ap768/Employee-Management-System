@@ -831,19 +831,126 @@ Rahul Sharma   rahul@gmail.com       HR
 
 Users can navigate to the Employee Management page to view complete employee information.
 
-🔒 Security Considerations
+## 🔐 Spring Security & JWT Authentication
 
-For production deployment, the following security improvements are recommended:
+The Employee Management System uses **Spring Security** to secure backend APIs with authentication and role-based authorization.
 
-Password hashing using BCrypt
-JWT or secure session-based authentication
-HTTPS
-Secure database credentials
-Environment variables for sensitive configuration
-Secure OTP delivery
-Rate limiting for OTP requests
-Account lockout after repeated failed attempts
-Proper authorization on all APIs
-Removal of sensitive information from logs
+### Authentication Flow
 
+```text
+React Login
+    ↓
+Email + Password
+    ↓
+AuthenticationManager
+    ↓
+CustomUserDetailsService
+    ↓
+UserRepository
+    ↓
+BCrypt Password Verification
+    ↓
+OTP Verification
+    ↓
+JWT Generation
+    ↓
+React receives JWT
+    ↓
+Authorization: Bearer <JWT>
+    ↓
+JwtAuthenticationFilter
+    ↓
+JWT Validation
+    ↓
+Email + Role extracted
+    ↓
+SecurityContextHolder
+    ↓
+Role-Based Authorization
+    ↓
+Protected API
+```
+
+### Implemented Security Features
+
+- Spring Security configuration using `SecurityFilterChain`
+- JWT-based stateless authentication
+- BCrypt password hashing
+- OTP-based login verification
+- Custom `JwtAuthenticationFilter`
+- Custom `JwtUtil` for JWT generation, parsing, validation, and claim extraction
+- `CustomUserDetailsService` for loading users from the database
+- `AuthenticationManager` for credential authentication
+- `SecurityContextHolder` for storing authenticated user information for the current request
+- Role-based authorization using `hasRole()` and `hasAnyRole()`
+- Method-level authorization using `@PreAuthorize`
+- CORS configuration for React frontend communication
+- Stateless session management using `SessionCreationPolicy.STATELESS`
+
+### JWT Configuration
+
+JWTs are generated using the following configuration:
+
+- **Signing Algorithm:** HS256
+- **Token Expiration:** 10 hours
+- **Subject:** User email
+- **Custom Claim:** User role
+- **Authorization Header:** `Authorization: Bearer <JWT>`
+
+### Roles and Authorization
+
+The application uses three roles:
+
+```text
+ROLE_ADMIN
+ROLE_HR
+ROLE_EMPLOYEE
+```
+
+| Role | Access |
+|------|--------|
+| ADMIN | Full management access, employee deletion, CSV upload, leave and HR management |
+| HR | Employee, leave, attendance, holiday and offboarding management |
+| EMPLOYEE | Employee self-service features such as attendance, leave and holiday viewing |
+
+### Security Classes
+
+```text
+config/
+├── SecurityConfig.java
+├── CorsConfig.java
+├── DataInitializer.java
+└── PasswordMigration.java
+
+security/
+├── JwtUtil.java
+├── JwtAuthenticationFilter.java
+└── CustomUserDetailsService.java
+```
+
+### Password Security
+
+Passwords are not stored as plain text. Spring Security's `BCryptPasswordEncoder` is used for password hashing.
+
+```text
+Plain Password
+      ↓
+BCryptPasswordEncoder
+      ↓
+BCrypt Hash
+      ↓
+Database
+```
+
+### JWT Request Security
+
+For protected APIs, the frontend sends the JWT using the HTTP Authorization header:
+
+```http
+Authorization: Bearer <JWT>
+```
+
+`JwtAuthenticationFilter` reads the header, extracts the token, validates it using `JwtUtil`, extracts the user's email and role, creates the Spring Security authentication object, and stores it in the `SecurityContextHolder`.
+
+Spring Security then applies the configured authorization rules before allowing access to protected endpoints.
 
