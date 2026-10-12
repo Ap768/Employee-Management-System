@@ -1,839 +1,206 @@
-# Employee Management System (EMS)
+# Employee Management System (EMS-HRMS)
 
-A full-stack **Employee Management System (EMS)** developed using **React.js, Spring Boot, Spring Data JPA, Hibernate, and H2/MySQL**.
+A full-stack **Employee Management System (EMS-HRMS)** for managing employees, attendance, leave, holidays, employee offboarding, authentication, and HR operations.
 
-The application provides a centralized platform for managing employees, attendance, leaves, holidays, employee offboarding, authentication, and HR-related operations.
-
----
+Built with **React.js, Spring Boot, Spring Security, JWT, Spring Data JPA, Hibernate, and H2**, with MySQL profiles available for environment-specific deployments.
 
 ## 📌 Project Overview
 
-The Employee Management System is designed to simplify and digitize employee and HR management activities within an organization.
-
-The system provides different levels of access for:
+EMS-HRMS provides role-based access for:
 
 - **Admin**
 - **HR**
 - **Employee**
 
-The application follows a layered full-stack architecture:
+### Architecture
 
 ```text
-React Frontend
-      ↓
-REST API
-      ↓
-Spring Boot Backend
-      ↓
-Spring Data JPA / Hibernate
-      ↓
-H2 Database
-
-Features
-🔐 Authentication & OTP
-Login using email and password
-OTP-based authentication
-OTP verification
-OTP expiry after 5 minutes
-Role-based access control
-Account activation/deactivation
-Forgot password functionality
-Protected application routes
-CORS configuration
-Console-based OTP for local development/testing
-Login Flow
-Enter Email + Password
+React.js Frontend
         ↓
-Validate User
+      Axios
         ↓
-Generate OTP
+Spring Boot REST APIs
         ↓
-Save OTP
+Spring Security / JWT
         ↓
-Display OTP in Console
+Service Layer
         ↓
-Enter OTP
+Repository Layer
         ↓
-Verify OTP
-        ↓
-Login Successful
-👥 Employee Management
-
-The Employee Management module allows authorized users to manage employee information.
-
-Features
-Add employee
-View employees
-Update employee
-Delete employee
-Search employees
-Pagination
-Employee validation
-Department management
-Salary management
-Employee information management
-Role-based employee operations
-Employee Information
-
-The system maintains employee information such as:
-
-Employee ID
-Employee Name
-Email
-Department
-Salary
-Other employee-related information
-📊 Dashboard
-
-The EMS dashboard provides an overview of the organization.
-
-Dashboard Statistics
-
-The dashboard contains:
-
-Total Employees
-Total Departments
-New Employees
-Upcoming Holidays
-Dashboard Sections
-Departments
-
-Displays the departments available in the organization along with employee distribution.
-
-Example:
-
-IT                  35 Employees
-Engineering         25 Employees
-Finance             18 Employees
-HR                  12 Employees
-Sales               10 Employees
-Upcoming Holidays
-
-Displays upcoming company holidays.
-
-Information includes:
-
-Holiday Name
-Date
-Day
-Recent Employees
-
-Displays recently added employees.
-
-🕒 Attendance Management
-
-The Attendance Management module allows employees and authorized users to manage attendance.
-
-Features
-Employee check-in
-Employee check-out
-Today's attendance
-Attendance history
-Attendance by date
-Attendance management
-Attendance calendar
-Working hours calculation
-Attendance status
-Attendance Flow
-Employee
-   ↓
-Check In
-   ↓
-Attendance Created
-   ↓
-Employee Works
-   ↓
-Check Out
-   ↓
-Working Hours Calculated
-Attendance Status
-
-Examples:
-
-PRESENT
-ABSENT
-🏖️ Leave Management
-
-The Leave Management module allows employees to apply for leave and authorized users to manage leave requests.
-
-Employee Features
-Apply for leave
-View leave requests
-View leave status
-View leave history
-Track leave information
-HR/Admin Features
-View leave requests
-Approve leave
-Reject leave
-Manage employee leave requests
-Leave Types
-
-Examples:
-
-Casual Leave
-Sick Leave
-Earned Leave
-🎉 Holiday Management
-
-The Holiday Management module allows authorized users to manage organization holidays.
-
-Features
-Add holiday
-View holidays
-Update holiday
-Delete holiday
-View upcoming holidays
-Display upcoming holidays on dashboard
-🚪 Employee Offboarding
-
-The Employee Offboarding module manages employees who are leaving the organization.
-
-Features
-Search employees
-Start offboarding
-Manage offboarding information
-Complete offboarding
-Deactivate employee accounts
-
-When an employee account is disabled, the employee cannot log in to the system.
-
-👨‍💼 Role-Based Access Control
-
-The application supports three primary roles:
-
-ROLE_ADMIN
-ROLE_HR
-ROLE_EMPLOYEE
-👑 ADMIN
-
-Admin has the highest level of access.
-
-Admin can:
-
-Add employees
-Edit employees
-Delete employees
-View employees
-Manage leaves
-Approve leaves
-Reject leaves
-Manage attendance
-Manage holidays
-Manage offboarding
-Access dashboard
-Manage users
-Access administrative features
-👨‍💼 HR
-
-HR users have access to HR-related operations.
-
-HR can:
-
-Add employees
-Edit employees
-View employees
-Manage leave requests
-Approve leaves
-Reject leaves
-Manage attendance
-Manage holidays
-Manage offboarding
-View dashboard
-👤 EMPLOYEE
-
-Employees have access to employee-specific functionality.
-
-Employees can:
-
-View dashboard
-View employee information
-Check in
-Check out
-View attendance
-View attendance history
-Apply for leave
-View leave history
-View holidays
-🧱 Technology Stack
-Frontend
-React.js
-Vite
-JavaScript
-HTML5
-CSS3
-Bootstrap / Custom CSS
-React Router
-Redux Toolkit
-Axios
-Backend
-Java 8
-Spring Boot 2.7.18
-Spring MVC
-Spring Data JPA
-Hibernate
-REST APIs
-Maven
-Apache Tomcat
-Database
-
-The application supports:
-
-H2 Database
-MySQL Database
-H2
-
-H2 is used for local development and testing.
-
-Example database URL:
-
-jdbc:h2:file:./data/emsdb
-MySQL
-
-MySQL can be used for development, UAT, DR, and production environments.
-
-🏗️ Application Architecture
-
-The application follows a layered architecture.
-
-                    React Frontend
-                          |
-                          |
-                        Axios
-                          |
-                          ↓
-                Spring Boot REST API
-                          |
-                          ↓
-                     Controller
-                          |
-                          ↓
-                       Service
-                          |
-                          ↓
-                     Repository
-                          |
-                          ↓
-                   Hibernate / JPA
-                          |
-                          ↓
-                    H2 / MySQL
-📁 Project Structure
-Backend
-employee-management/
-│
-├── src/
-│   │
-│   ├── main/
-│   │   │
-│   │   ├── java/
-│   │   │   │
-│   │   │   └── com/cms/employeemanagement/
-│   │   │       │
-│   │   │       ├── controller/
-│   │   │       │
-│   │   │       ├── service/
-│   │   │       │   └── impl/
-│   │   │       │
-│   │   │       ├── repository/
-│   │   │       │
-│   │   │       ├── entity/
-│   │   │       │
-│   │   │       ├── dto/
-│   │   │       │
-│   │   │       ├── exception/
-│   │   │       │
-│   │   │       └── EmployeeManagementApplication.java
-│   │   │
-│   │   └── resources/
-│   │       │
-│   │       ├── application.properties
-│   │       ├── application-h2.properties
-│   │       ├── application-dev.properties
-│   │       ├── application-uat.properties
-│   │       ├── application-dr.properties
-│   │       └── application-prod.properties
-│   │
-│   └── test/
-│
-├── pom.xml
-└── README.md
-Frontend
-frontend/
-│
-├── src/
-│   │
-│   ├── components/
-│   │
-│   ├── pages/
-│   │
-│   ├── services/
-│   │
-│   ├── store/
-│   │   ├── slices/
-│   │   └── store.js
-│   │
-│   ├── hooks/
-│   │
-│   ├── assets/
-│   │
-│   ├── App.jsx
-│   └── main.jsx
-│
-├── public/
-├── package.json
-├── vite.config.js
-└── README.md
-🔗 API Endpoints
-Authentication
-POST /api/users/login
-POST /api/users/verify-otp
-POST /api/users/forgot-password
-Employee APIs
-GET    /api/employees
-GET    /api/employees/{id}
-POST   /api/employees
-PUT    /api/employees/{id}
-DELETE /api/employees/{id}
-Attendance APIs
-POST /api/attendance/checkin/{email}
-
-
-PUT /api/attendance/checkout/{email}
-
-
-GET /api/attendance/today/{email}
-
-
-GET /api/attendance/history/{email}
-
-
-GET /api/attendance
-
-
-GET /api/attendance/date/{email}/{date}
-
-
-GET /api/attendance/management/{date}
-Leave APIs
-POST /api/leaves
-
-
-GET /api/leaves
-
-
-PUT /api/leaves/{id}/approve
-
-
-PUT /api/leaves/{id}/reject
-
-Leave endpoints may vary depending on the final implementation.
-
-Holiday APIs
-GET    /api/holidays
-
-
-GET    /api/holidays/upcoming
-
-
-POST   /api/holidays
-
-
-PUT    /api/holidays/{id}
-
-
-DELETE /api/holidays/{id}
-⚙️ Backend Setup
-Prerequisites
-
-Install the following software:
-
-Java 8
-Maven
-Node.js
-npm
-MySQL (if using MySQL)
-Git
-IDE such as VS Code, Eclipse, or IntelliJ IDEA
-Step 1 — Clone the Repository
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-
-Navigate to the project:
-
-cd employee-management
-Step 2 — Build the Backend
-
-Run:
-
-mvn clean install
-Step 3 — Start Spring Boot
-
-Run:
-
-mvn spring-boot:run
-
-The backend will start on:
-
-http://localhost:9090
-🗄️ H2 Database Configuration
-
-For local development/testing, use the H2 profile.
-
-In:
-
-application.properties
-
-set:
-
-spring.profiles.active=h2
-
-The H2 database is:
-
-jdbc:h2:file:./data/emsdb
-
-Username:
-
-sa
-
-Password:
-
-
-
-🖥️ H2 Console
-
-The H2 console is available at:
-
-http://localhost:9090/h2-console
-
-Use the following JDBC URL:
-
-jdbc:h2:file:./data/emsdb
-
-Username:
-
-sa
-Frontend Setup
-
-Open a new terminal.
-
-Navigate to the frontend directory:
-
-cd frontend
-
-Install dependencies:
-
-npm install
-
-Start the frontend:
-
-npm run dev
-
-The React application will normally be available at:
-
-http://localhost:5173
-🔄 Frontend and Backend Communication
-
-The React frontend communicates with Spring Boot through REST APIs.
-
-React Application
-       |
-       | Axios
-       ↓
-http://localhost:9090/api
-       |
-       ↓
-Spring Boot REST API
-       |
-       ↓
 JPA / Hibernate
-       |
-       ↓
-Database
-🔑 Default Development Users
-
-The following sample users can be used for local testing if they are present in the database.
-
-Admin
-Email:
-admin@gmail.com
-
-
-Password:
-admin123
-
-
-Role:
-ROLE_ADMIN
-HR
-Email:
-hr@gmail.com
-
-
-Password:
-hr123
-
-
-Role:
-ROLE_HR
-Employee
-Email:
-employee@gmail.com
-
-
-Password:
-employee123
-
-
-Role:
-ROLE_EMPLOYEE
-
-These credentials are intended only for local development/testing. They should be changed before production deployment.
-
-🔐 OTP Authentication
-
-The application uses OTP verification after successful email/password validation.
-
-Process
-User enters email/password
-             ↓
-        Validate User
-             ↓
-        Generate OTP
-             ↓
-       Save OTP in DB
-             ↓
-     OTP displayed in console
-             ↓
-       User enters OTP
-             ↓
-        Verify OTP
-             ↓
-       Login successful
-
-OTP validity:
-
-5 minutes
-
-For local development, the generated OTP is displayed in the Spring Boot console.
-
-Example:
-
-==================================================
-LOGIN OTP FOR admin@gmail.com : 583421
-OTP VALID FOR : 5 MINUTES
-==================================================
-🧪 Testing
-
-The project supports different types of testing.
-
-Unit Testing
-
-JUnit tests can be used to test individual service and business logic components.
-
-Integration Testing
-
-Integration tests can be used to verify communication between:
-
-Controller
-    ↓
-Service
-    ↓
-Repository
-    ↓
-Database
-API Testing
-
-REST APIs can be tested using tools such as:
-
-Postman
-Browser
-Frontend application
-Run Tests
-mvn test
-🛡️ Validation
-
-The application performs validation for employee and request data.
-
-Examples include:
-
-Required employee name
-Valid email
-Required department
-Positive salary
-Required leave information
-Valid leave dates
-Valid login credentials
-Valid OTP
-Active user account
-⚠️ Error Handling
-
-The backend provides centralized exception handling.
-
-Examples of possible errors:
-
-Invalid Email
-Invalid Password
-Invalid OTP
-Employee Not Found
-Leave Not Found
-Employee Already Checked In
-Employee Already Checked Out
-Account Disabled
-Invalid Request
-Validation Error
-🌍 Spring Profiles
-
-The application supports multiple environments.
-
-h2
-dev
-uat
-dr
-prod
-
-Example:
-
-spring.profiles.active=h2
-
-Development:
-
-spring.profiles.active=dev
-
-UAT:
-
-spring.profiles.active=uat
-
-DR:
-
-spring.profiles.active=dr
-
-Production:
-
-spring.profiles.active=prod
-📦 Build the Application
-
-To create the backend build:
-
-mvn clean package
-
-The generated files will be available inside:
-
-target/
-🚀 Deployment
-
-The application can be deployed using Spring Boot's embedded Tomcat.
-
-The backend runs on:
-
-Port: 9090
-
-The frontend development server runs on:
-
-Port: 5173
-
-For production deployment, configure the appropriate Spring profile and database credentials.
-
-📱 Responsive Design
-
-The React application is designed to support:
-
-Desktop
-Laptop
-Tablet
-Mobile
-
-The application uses responsive layouts for:
-
-Dashboard
-Employee Management
-Leave Management
-Attendance
-Holiday Management
-Offboarding
-Other application pages
-📊 Dashboard Overview
-
-The EMS dashboard provides an HR-focused overview.
-
-Dashboard Cards
-Total Employees
-Total Departments
-New Employees
-Upcoming Holidays
-Dashboard Sections
-Departments
-Upcoming Holidays
-Recent Employees
-
-The dashboard does not use separate statistic cards for:
-
-Pending Leaves
-Approved Leaves
-Rejected Leaves
-Present Today
-Absent Today
-Attendance Rate
-On Leave Today
-
-Attendance and leave management remain available through their respective application modules.
-
-👥 Department Management
-
-Departments are displayed based on employee data.
-
-Example:
-
-IT
-Engineering
-HR
-Finance
-Sales
-
-The dashboard can display the number of employees in each department.
-
-Example:
-
-IT              35 Employees
-Engineering     25 Employees
-Finance         18 Employees
-HR              12 Employees
-Sales           10 Employees
-🎉 Upcoming Holidays
-
-The dashboard displays upcoming holidays.
-
-Example:
-
-Independence Day
-15 Aug 2026 · Saturday
-
-
-Ganesh Chaturthi
-27 Aug 2026 · Thursday
-
-
-Gandhi Jayanti
-02 Oct 2026 · Friday
-
-Users can navigate to the complete Holiday Management page to view all holidays.
-
-🧑‍💼 Recent Employees
-
-The dashboard can display recently added employees.
-
-Example:
-
-Employee       Email                 Department
-
-
-Amaan Patel    amaan@gmail.com       IT
-Rahul Sharma   rahul@gmail.com       HR
-
-Users can navigate to the Employee Management page to view complete employee information.
-
-## 🔐 Spring Security & JWT Authentication
-
-The Employee Management System uses **Spring Security** to secure backend APIs with authentication and role-based authorization.
+        ↓
+H2 / MySQL
+```
+
+## ✨ Key Features
+
+### 🔐 Authentication & Security
+
+- Email/password authentication
+- OTP-based login verification
+- OTP expiry after **5 minutes**
+- Spring Security
+- JWT-based stateless authentication
+- BCrypt password hashing
+- Role-based authorization
+- Method-level authorization using `@PreAuthorize`
+- Protected REST APIs
+- CORS configuration
+- Account activation/deactivation
+- Forgot-password functionality
+- Custom JWT authentication filter
+- Custom user details service
+
+### 👥 Employee Management
+
+- Add employee
+- View employees
+- Update employee
+- Delete employee
+- Search employees
+- Pagination
+- Employee validation
+- Department management
+- Salary management
+- Role-based employee operations
+- Employee information management
+
+### 📊 Dashboard
+
+- Total employees
+- Total departments
+- New employees
+- Upcoming holidays
+- Department-wise employee distribution
+- Recently added employees
+
+### 🕒 Attendance Management
+
+- Employee check-in
+- Employee check-out
+- Today's attendance
+- Attendance history
+- Attendance by date
+- Attendance management
+- Attendance calendar
+- Working-hours calculation
+- Attendance status
+- Automated attendance processing
+
+### 📱 QR Code Attendance
+
+The application supports QR-based attendance.
+
+**Employee side**
+- Employee can display an attendance QR code.
+- QR data identifies the employee and attendance action.
+
+**Admin/HR side**
+- Admin/HR can open the camera scanner.
+- QR code can be scanned.
+- The application processes the scan and records attendance.
+
+Supported actions:
+
+```text
+CHECK_IN
+CHECK_OUT
+```
+
+### 🏖️ Leave Management
+
+**Employee**
+- Apply for leave
+- View leave requests
+- View leave status
+- View leave history
+- Track leave information
+
+**Admin/HR**
+- View leave requests
+- Approve leave
+- Reject leave
+- Manage employee leave requests
+
+Leave types include:
+
+- Casual Leave
+- Sick Leave
+- Earned Leave
+
+### 🎉 Holiday Management
+
+- Add holiday
+- View holidays
+- Update holiday
+- Delete holiday
+- View upcoming holidays
+- Display upcoming holidays on the dashboard
+
+### 🚪 Employee Offboarding
+
+- Search employees
+- Start offboarding
+- Manage offboarding information
+- Complete offboarding
+- Deactivate employee accounts
+
+When an employee account is deactivated, the employee cannot log in.
+
+### 📄 CSV Employee Upload
+
+Admin functionality supports CSV-based employee processing:
+
+- CSV upload
+- File validation
+- Employee data processing
+- Database persistence
+- File processing/status tracking
+
+## 👤 Role-Based Access
+
+| Role | Main Access |
+|---|---|
+| **ADMIN** | Full employee, attendance, leave, holiday, offboarding and administrative management |
+| **HR** | Employee, attendance, leave, holiday and offboarding management |
+| **EMPLOYEE** | Employee self-service, attendance, leave and holiday features |
+
+## 🧱 Technology Stack
+
+### Frontend
+
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+- Bootstrap / Custom CSS
+- React Router
+- Redux Toolkit
+- Axios
+- React Toastify
+- Lucide React
+- QR code components
+
+### Backend
+
+- Java 8
+- Spring Boot 2.7.18
+- Spring MVC
+- Spring Security
+- JWT
+- Spring Data JPA
+- Hibernate
+- REST APIs
+- Maven
+- Apache Tomcat
+
+### Database
+
+- **H2** — current local/runtime database
+- **MySQL** — supported through environment-specific profiles
+
+## 🔐 Spring Security & JWT
 
 ### Authentication Flow
 
@@ -844,11 +211,7 @@ Email + Password
     ↓
 AuthenticationManager
     ↓
-CustomUserDetailsService
-    ↓
-UserRepository
-    ↓
-BCrypt Password Verification
+User Validation
     ↓
 OTP Verification
     ↓
@@ -862,7 +225,7 @@ JwtAuthenticationFilter
     ↓
 JWT Validation
     ↓
-Email + Role extracted
+Email + Role Extraction
     ↓
 SecurityContextHolder
     ↓
@@ -871,49 +234,7 @@ Role-Based Authorization
 Protected API
 ```
 
-### Implemented Security Features
-
-- Spring Security configuration using `SecurityFilterChain`
-- JWT-based stateless authentication
-- BCrypt password hashing
-- OTP-based login verification
-- Custom `JwtAuthenticationFilter`
-- Custom `JwtUtil` for JWT generation, parsing, validation, and claim extraction
-- `CustomUserDetailsService` for loading users from the database
-- `AuthenticationManager` for credential authentication
-- `SecurityContextHolder` for storing authenticated user information for the current request
-- Role-based authorization using `hasRole()` and `hasAnyRole()`
-- Method-level authorization using `@PreAuthorize`
-- CORS configuration for React frontend communication
-- Stateless session management using `SessionCreationPolicy.STATELESS`
-
-### JWT Configuration
-
-JWTs are generated using the following configuration:
-
-- **Signing Algorithm:** HS256
-- **Token Expiration:** 10 hours
-- **Subject:** User email
-- **Custom Claim:** User role
-- **Authorization Header:** `Authorization: Bearer <JWT>`
-
-### Roles and Authorization
-
-The application uses three roles:
-
-```text
-ROLE_ADMIN
-ROLE_HR
-ROLE_EMPLOYEE
-```
-
-| Role | Access |
-|------|--------|
-| ADMIN | Full management access, employee deletion, CSV upload, leave and HR management |
-| HR | Employee, leave, attendance, holiday and offboarding management |
-| EMPLOYEE | Employee self-service features such as attendance, leave and holiday viewing |
-
-### Security Classes
+### Implemented Security Components
 
 ```text
 config/
@@ -928,9 +249,17 @@ security/
 └── CustomUserDetailsService.java
 ```
 
+### JWT Configuration
+
+- **Signing Algorithm:** HS256
+- **Token Expiration:** 10 hours
+- **Subject:** User email
+- **Claim:** User role
+- **Header:** `Authorization: Bearer <JWT>`
+
 ### Password Security
 
-Passwords are not stored as plain text. Spring Security's `BCryptPasswordEncoder` is used for password hashing.
+Passwords are hashed using BCrypt.
 
 ```text
 Plain Password
@@ -942,15 +271,487 @@ BCrypt Hash
 Database
 ```
 
-### JWT Request Security
+## 🕒 Attendance Flow
 
-For protected APIs, the frontend sends the JWT using the HTTP Authorization header:
-
-```http
-Authorization: Bearer <JWT>
+```text
+Employee
+   ↓
+Check In
+   ↓
+Attendance Created
+   ↓
+Employee Works
+   ↓
+Check Out
+   ↓
+Working Hours Calculated
+   ↓
+Attendance Status
 ```
 
-`JwtAuthenticationFilter` reads the header, extracts the token, validates it using `JwtUtil`, extracts the user's email and role, creates the Spring Security authentication object, and stores it in the `SecurityContextHolder`.
+Typical statuses:
 
-Spring Security then applies the configured authorization rules before allowing access to protected endpoints.
+- `PRESENT`
+- `ABSENT`
 
+## 🏖️ Leave Flow
+
+```text
+Employee
+   ↓
+Apply Leave
+   ↓
+Leave Request Created
+   ↓
+Admin / HR Reviews
+   ↓
+Approve / Reject
+   ↓
+Leave Status Updated
+```
+
+## 🏗️ Application Architecture
+
+The backend follows a layered architecture:
+
+```text
+Controller
+    ↓
+Service
+    ↓
+Repository
+    ↓
+JPA / Hibernate
+    ↓
+Database
+```
+
+The React frontend communicates with Spring Boot through REST APIs using Axios.
+
+## 📁 Project Structure
+
+### Backend
+
+```text
+employee-management/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/cms/employeemanagement/
+│   │   │       ├── controller/
+│   │   │       ├── service/
+│   │   │       │   └── impl/
+│   │   │       ├── repository/
+│   │   │       ├── entity/
+│   │   │       ├── dto/
+│   │   │       ├── exception/
+│   │   │       └── EmployeeManagementApplication.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── application-h2.properties
+│   │       ├── application-dev.properties
+│   │       ├── application-uat.properties
+│   │       ├── application-dr.properties
+│   │       └── application-prod.properties
+│   └── test/
+├── pom.xml
+└── README.md
+```
+
+### Frontend
+
+```text
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── store/
+│   │   ├── slices/
+│   │   └── store.js
+│   ├── hooks/
+│   ├── assets/
+│   ├── App.jsx
+│   └── main.jsx
+├── public/
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## 🔗 REST API Overview
+
+### Authentication
+
+```http
+POST /api/users/login
+POST /api/users/verify-otp
+POST /api/users/forgot-password
+```
+
+### Employee
+
+```http
+GET    /api/employees
+GET    /api/employees/{id}
+POST   /api/employees
+PUT    /api/employees/{id}
+DELETE /api/employees/{id}
+```
+
+### Attendance
+
+```http
+POST /api/attendance/checkin/{email}
+PUT  /api/attendance/checkout/{email}
+
+GET  /api/attendance/today/{email}
+GET  /api/attendance/history/{email}
+GET  /api/attendance
+GET  /api/attendance/date/{email}/{date}
+GET  /api/attendance/management/{date}
+```
+
+### Leave
+
+```http
+POST /api/leaves
+GET  /api/leaves
+PUT  /api/leaves/{id}/approve
+PUT  /api/leaves/{id}/reject
+```
+
+### Holiday
+
+```http
+GET    /api/holidays
+GET    /api/holidays/upcoming
+POST   /api/holidays
+PUT    /api/holidays/{id}
+DELETE /api/holidays/{id}
+```
+
+> Additional endpoints may exist for specific frontend workflows and modules.
+
+## ⚙️ Local Setup
+
+### Prerequisites
+
+Install:
+
+- Java 8
+- Maven
+- Node.js
+- npm
+- Git
+- VS Code, Eclipse, or IntelliJ IDEA
+
+MySQL is required only when using a MySQL-based profile.
+
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd employee-management
+```
+
+### 2. Run the Backend
+
+```bash
+mvn clean install
+```
+
+Then:
+
+```bash
+mvn spring-boot:run
+```
+
+Backend:
+
+```text
+http://localhost:9090
+```
+
+### 3. H2 Database
+
+The current application uses H2 for local/runtime execution.
+
+Example:
+
+```text
+jdbc:h2:file:./data/emsdb
+```
+
+Default username:
+
+```text
+sa
+```
+
+If the H2 profile is configured:
+
+```properties
+spring.profiles.active=h2
+```
+
+### H2 Console
+
+```text
+http://localhost:9090/h2-console
+```
+
+Use the JDBC URL configured by the active H2 profile.
+
+### 4. Run the Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+## 🔄 Frontend–Backend Communication
+
+```text
+React Application
+       ↓
+     Axios
+       ↓
+http://localhost:9090/api
+       ↓
+Spring Boot REST API
+       ↓
+JPA / Hibernate
+       ↓
+H2 / MySQL
+```
+
+## 🔑 Development Login
+
+If sample users are initialized in the local database:
+
+| Role | Email | Password |
+|---|---|---|
+| ADMIN | `admin@gmail.com` | `admin123` |
+| HR | `hr@gmail.com` | `hr123` |
+| EMPLOYEE | `employee@gmail.com` | `employee123` |
+
+> These credentials are for local development/testing only. Change or remove default credentials before production deployment.
+
+## 🔐 OTP Login
+
+```text
+Email + Password
+       ↓
+Validate User
+       ↓
+Generate OTP
+       ↓
+Save OTP
+       ↓
+OTP Verification
+       ↓
+JWT Generated
+       ↓
+Login Successful
+```
+
+OTP validity:
+
+```text
+5 minutes
+```
+
+For local development, the generated OTP is available through the configured development console flow.
+
+## 🧪 Testing
+
+The project supports:
+
+### Unit Testing
+
+JUnit can be used for individual service and business-logic testing.
+
+### Integration Testing
+
+```text
+Controller
+    ↓
+Service
+    ↓
+Repository
+    ↓
+Database
+```
+
+### API Testing
+
+REST APIs can be tested using:
+
+- Postman
+- Browser
+- Frontend application
+
+Run tests:
+
+```bash
+mvn test
+```
+
+## 🛡️ Validation & Error Handling
+
+Examples of implemented validation include:
+
+- Required employee information
+- Valid email
+- Required department
+- Positive salary
+- Required leave information
+- Valid leave dates
+- Valid login credentials
+- Valid OTP
+- Active user account
+
+Centralized exception handling covers cases such as:
+
+- Invalid email
+- Invalid password
+- Invalid OTP
+- Employee not found
+- Leave not found
+- Duplicate attendance action
+- Account disabled
+- Invalid request
+- Validation errors
+
+## 🌍 Spring Profiles
+
+Supported profiles:
+
+```text
+h2
+dev
+uat
+dr
+prod
+```
+
+Example:
+
+```properties
+spring.profiles.active=h2
+```
+
+Other environments:
+
+```properties
+spring.profiles.active=dev
+spring.profiles.active=uat
+spring.profiles.active=dr
+spring.profiles.active=prod
+```
+
+## 📦 Build
+
+```bash
+mvn clean package
+```
+
+Generated backend artifacts:
+
+```text
+target/
+```
+
+## 🚀 Deployment
+
+The Spring Boot application can run using embedded Tomcat.
+
+Default backend port:
+
+```text
+9090
+```
+
+Frontend development port:
+
+```text
+5173
+```
+
+For production deployment:
+
+1. Select the appropriate Spring profile.
+2. Configure production database credentials.
+3. Configure frontend API URLs.
+4. Secure application secrets and JWT configuration.
+5. Build the backend.
+6. Build and deploy the React frontend.
+
+## 📱 Responsive UI
+
+The React application supports:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+Responsive layouts are provided across major modules such as:
+
+- Dashboard
+- Employee Management
+- Attendance
+- Leave Management
+- Holiday Management
+- Offboarding
+
+## 📊 Application Modules
+
+```text
+EMS-HRMS
+│
+├── Authentication & Security
+├── Dashboard
+├── Employee Management
+├── Attendance Management
+│   └── QR Attendance
+├── Leave Management
+├── Holiday Management
+├── Employee Offboarding
+├── CSV Employee Upload
+└── Role-Based Access Control
+```
+
+## 🔮 Future Enhancements
+
+Potential future improvements:
+
+- Email/SMS OTP delivery
+- Advanced audit logging
+- Production-grade secret management
+- Expanded automated test coverage
+- CI/CD pipeline
+- Advanced HR analytics
+- Notification system
+- Cloud deployment
+- Production monitoring and observability
+
+## 👨‍💻 Author
+
+**Amaan Patel**
+
+Full-stack developer / intern project — Employee Management System (EMS-HRMS).
+
+## 📌 Project Status
+
+**Actively developed full-stack application.**
+
+Current functionality includes authentication, role-based access, employee management, attendance, QR attendance, leave management, holiday management, employee offboarding, dashboard functionality, and CSV employee processing.
