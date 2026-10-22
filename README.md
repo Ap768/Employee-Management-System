@@ -1,4 +1,4 @@
-Employee Management System (EMS-HRMS)
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/080c20d1-d9ed-420f-8c84-e2a75a49bb81" />Employee Management System (EMS-HRMS)
 A full-stack Employee Management System (EMS-HRMS) for managing
 employees, attendance, leave, holidays, employee offboarding,
 authentication, HR operations, and integrated Library / Book
@@ -681,3 +681,32 @@ holiday management, employee offboarding, dashboard functionality, CSV
 employee processing, and the integrated Library Management module with
 book QR generation, QR/barcode scanning, book issue/return, and
 transaction history.
+
+
+## 📸 Application Screenshots
+
+### 🔐 Login & Authentication
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/3f01cbbe-b7f3-4eff-a367-6bfb8f6598bc" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2529f868-a98b-409b-a1aa-51815eb5730b" />
+
+
+### 📊 Dashboard
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1df470d2-4fa7-4230-989e-9fdccce1470e" />
+### 👨‍💼 Employee Management
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f061a3d3-be6c-4edf-9bb5-d68ac4403cb6" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/40de2589-a6fa-4616-86f2-88734097354e" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a25a8f22-3747-4441-9a6b-44bd761ccfbd" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c6eeeb41-f744-4fb7-bc76-9b034965de54" />
+### 📱 QR Attendance
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/6850c79b-124b-4d57-99ae-689c21cee13d" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/bf38c92f-db3f-4036-b56b-b4839ab73450" />
+### 📚 Library Management
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e5fb7347-ee55-4128-b618-6ef174188ca8" />
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/644b6e0d-2a75-41f6-86fa-3c59c65f2f45" />
+
+
+
+
